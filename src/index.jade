@@ -1,0 +1,517 @@
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+    title Javascript ES6
+    link(rel='stylesheet', type='text/css', href='build/build.css')
+
+  body
+
+    article
+
+      section
+        img(src="./images/LogoWebIsArt.png" style="width: 130px; height: auto; margin-bottom: 20px;")
+        h1 ECMAScript 6
+        h3 aka JavaScript ES6/ES2015
+        h4 by <a href="https://twitter.com/delvedor" target="_blank">Tomas Della Vedova</a>
+
+      section
+        h2.bullet JavaScript is not a language
+        ul
+          li JavaScript is an implementation of a language
+          li The name of this language is ECMAScript
+
+      section
+        h2.bullet What is ECMAScript?
+        ul
+          li ECMAScript (or ES) is a trademarked scripting-language specification standardized by Ecma International in ECMA-262 and ISO/IEC 16262.
+          li Ecma International is an industry association founded in 1961 and dedicated to the standardization of Information and Communication Technology and Consumer Electronics.
+
+      section(data-bespoke-hash="what-is-javascript")
+        h2.bullet Ok, so what is JavaScript?
+        ul
+          li Is the world's most misunderstood programming language.
+          li Javascript is:
+            <br/>
+            <br/>
+            ul
+              li Asynchronous
+              li Mono thread
+              li Dynamic
+              li Interpreted
+              li Object Oriented
+              li Functional
+              li Works both in browser and server
+              li but also on mobile, IoT, Desktop..
+              li and much other!
+
+      section
+        h2.bullet JavaScript brief history
+        ul
+          li JavaScript was developed in 10 days in 1995 by <a href="https://twitter.com/brendaneich" target="_blank">Brendan Eich</a>
+          li Names: Mocha -> LiveScript -> JavaScript
+          li In 1996 was standardized by Ecma
+
+      section
+        h2.bullet ES releases
+        ul
+          li ECMA-262 - 1997
+          li ES2 - 1998
+          li ES3 - 1999
+          li ES4 - Abandoned
+          li ES5 - 2009
+          li ES5.1 - 2011
+        br
+        ul
+          li.big-bullet ES6 - 2015
+
+      section
+        img(src="./images/boring.jpg" style="max-width: 400px; height: auto;")
+
+      section(data-bespoke-hash="must-use")
+        h2.bullet ES6, the must use features
+        ul
+          li let
+          li const
+          li Template literals
+          li Arrow functions
+          li Default parameters
+          li Rest parameters
+          li Destructuring assignment
+          li Spread operator
+          li Classes
+          li Promises
+          li Modules
+
+      section
+        h3 &ldquo;Talk is cheap. Show me the code.&rdquo;
+        h4 Linus Torvalds
+
+      section(data-bespoke-hash="let")
+        h2 let
+        p The let statement declares a block-scoped local variable without hoisting, optionally initializing it to a value.
+        pre
+          code.language-javascript.
+            console.log(myVar) // ReferenceError: myVar is not defined
+            let myVar = 'hello'
+
+        pre
+          code.language-javascript.
+            if (true) {
+              let myVar = 'world'
+            }
+            console.log(myVar) // ReferenceError: myVar is not defined
+
+      section
+        p What gonna happen?
+        pre
+          code.language-javascript.
+            let myVar = true
+
+            function helloVar () {
+              myVar = false
+              return myVar
+            }
+
+            alert('Before function execution: ' + myVar)
+            alert('Function execution: ' + helloVar())
+            alert('After function execution: ' + myVar)
+        <a data-bespoke-run>Run code snippet</a>
+
+      section
+        p And now?
+        pre
+          code.language-javascript.
+            let myVar = true
+
+            function helloVar () {
+              let myVar = false // Notice let keyword here
+              return myVar
+            }
+
+            alert('Before function execution: ' + myVar)
+            alert('Function execution: ' + helloVar())
+            alert('After function execution: ' + myVar)
+        <a data-bespoke-run>Run code snippet</a>
+
+      section(data-bespoke-hash="const")
+        h2 const
+        ul
+          li The const declaration creates a read-only reference to a value.
+          li Same behaviour as let when talking about scope.
+          li Pay attention, it does not mean the value it holds is immutable, just that the variable identifier cannot be reassigned.
+
+      section
+        ul
+          li Immutable, cannot reassigned.. what?
+          li
+            pre
+              code.language-javascript.
+                const x = true
+                x = false // TypeError: Assignment to
+                          // constant variable.
+          li
+            pre
+              code.language-javascript.
+                const x = { bool: true }
+                x.bool = false // Totally fine here
+
+          li
+            pre
+              code.language-javascript.
+                // truly immutable object
+                const x = Object.freeze({ bool: true })
+
+      section(data-bespoke-hash="template-literals")
+        h2 Template literals
+        p String literals allowing embedded expressions.<br/>You can use multi-line strings and string interpolation features with them.
+        pre
+          code.language-javascript.
+            let myString = `Hi, I'm a template literals!`
+
+            let add = `By adding one and two you get ${1 + 2}!`
+            console.log(add) // By adding one and two you get 2!
+
+            let multiline = `I'm
+            multiline!`
+
+      section(data-bespoke-hash="arrow-functions")
+        h2 Arrow functions
+        p An arrow function expression has a shorter syntax compared to function expressions and lexically binds the this value.<br/>Arrow functions are always anonymous.
+        ul
+          li
+            pre
+              code.language-javascript.
+                const myFunction = () => console.log('Hello world!')
+          li
+            pre
+              code.language-javascript.
+                event.on('pippo', (err, val) => {
+                  if (err) return console.log(err)
+                  doSomething(val)
+                })
+
+      section(data-bespoke-hash="default-parameters")
+        h2 Default parameters
+        ul
+          li Allow parameters to be initialized with default values if no value or undefined is passed.
+          li Remember that the default argument gets evaluated at call-time, so a new object is created each time the function is called.
+          li
+            pre
+              code.language-javascript.
+                function append (value = null, array = []) {
+                  array.push(value)
+                  return array
+                }
+
+                alert(append(5))
+                alert(append(7, append(2)))
+            <a data-bespoke-run>Run code snippet</a>
+
+      section(data-bespoke-hash="rest-parameters")
+        h2 Rest parameters
+        ul
+          li Allow us to represent an indefinite number of arguments as an array.
+          li So.. the same as <em>arguments</em>?
+          li Not so much, Rest parameters are only the one that haven't been given a separate name.
+          li
+            pre
+              code.language-javascript.
+                function myFunction (a, b, ...args) {
+                  console.log(a, b, args) // c i ['a', 'o']
+                }
+                myFunction('c', 'i', 'a', 'o')
+
+      section(data-bespoke-hash="spread-operator")
+        h2 Spread operator
+        p.bullet Allows an expression to be expanded in places where multiple arguments/elements are expected.
+        ul
+          li
+            pre
+              code.language-javascript.
+                function myFunction (x, y, z) {}
+                let args = [1, 2, 3]
+          li
+            pre
+              code.language-javascript.
+                // without spread operator
+                myFunction.apply(null, args)
+          li
+            pre
+              code.language-javascript.
+                // with spread operator
+                myFunction(...args)
+
+      section
+        ul
+          li
+            pre
+              code.language-javascript.
+                // es5
+                // concat
+                let params = ['something', 45, false]
+                let other = [true, 'js'].concat(params)
+                // split
+                let str = 'foo'
+                let chars = str.split('') // ['f', 'o', 'o']
+          li
+            pre
+              code.language-javascript.
+                // es6
+                // concat
+                let params = ['something', 45, false]
+                let other = [true, 'js', ...params]
+                // split
+                let str = 'foo'
+                let chars = [...str] // ['f', 'o', 'o']
+
+      section(data-bespoke-hash="destructuring-assignment")
+        h2 Destructuring Assignment
+        ul
+          li Is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirror the construction of array and object literals.
+          li <img src="./images/what.gif" style="max-width: 350px;"/>
+
+      section
+        ul
+          li Let's see an example with arrays
+          li
+            pre
+              code.language-javascript.
+                let array = ['javascript', 'is', 'good']
+          li
+            pre
+              code.language-javascript.
+                // without destructuring
+                let one = array[0]
+                let two = array[1]
+                let three = array[2]
+          li
+            pre
+              code.language-javascript.
+                // with destructuring
+                let [one, two, three] = array
+
+      section
+        ul
+          li And now with objects
+          li
+            pre
+              code.language-javascript.
+                let obj = { name: 'foo', answer: 42 }
+          li
+            pre
+              code.language-javascript.
+                // without destructuring
+                let name = obj.name
+                let answer = obj.answer
+          li
+            pre
+              code.language-javascript.
+                // with destructuring
+                let { name, answer } = obj
+                let { name: n, answer: a } = obj
+
+      section
+        ul
+          li Were you saying swapping?
+          li
+            pre
+              code.language-javascript.
+                // swapping a & b, the old way
+                let swap = a
+                a = b
+                b = swap
+          li
+            pre
+              code.language-javascript.
+                // destructuring assignment <3
+                ;[a, b] = [b, a]
+
+      section
+        ul
+          li Works well in functions too
+          li
+            pre
+              code.language-javascript.
+                // array
+                function func1 ([ name, val ]) {
+                  console.log(name, val)
+                }
+                // object
+                function func2 ({ name, val }) {
+                  console.log(name, val)
+                }
+                // object with renaming
+                function func3 ({ name: n, val: v }) {
+                  console.log(n, v)
+                }
+
+      section(data-bespoke-hash="classes")
+        h2.bullet Classes
+        ul
+          li Whoooo, finally!
+          li Nope, just syntactical sugar.
+          li Just another way to write JavaScript prototype-based inheritance.
+
+      section
+        pre.bullet
+          code.language-javascript.
+            class MyClass {
+              constructor (x = 0, y = 0) {
+                this.x = x
+                this.y = y
+              }
+              sum () {
+                return this.x + this.y
+              }
+            }
+        ul
+          li Yes, you can also use extends, static...
+
+      section(data-bespoke-hash="promises")
+        h2 Promises
+        ul
+          li The Promise object is used for deferred and async computations.<br/>A Promise represents an operation that hasn't completed yet, but is expected in the future.
+          li
+            pre
+              code.language-javascript.
+                new Promise((resolve, reject) => {
+                  if (someError) {
+                    reject(someError)
+                  } else {
+                    resolve(value)
+                  }
+                })
+
+      section
+        pre
+          code.language-javascript.
+            myPromise(param)
+              .then((value) => {
+                return otherPromise(value)
+              })
+              .then((value) => {
+                doSomething(value)
+              })
+              .catch((err) => {
+                console.log(err)
+              })
+
+      section(data-bespoke-hash="modules")
+        h2 Modules
+        p.bullet Modules are good!
+        ul
+          li export
+          li import
+
+      section
+        h2 Export
+        pre
+          code.language-javascript.
+            // lib.js
+            export const helloWorld = 'Hello world!'
+            export function myFunction () {}
+
+            // MyModule.js
+            export default class {...}
+
+      section
+        h2 Import
+        pre
+          code.language-javascript.
+            import { helloWorld, myFunction } from './lib'
+            console.log(helloWorld) // Hello World!
+
+            // if there are a lot of vars
+            // and functions inside your file:
+            import * as lib from './lib'
+            console.log(lib.helloWorld) // Hello World!
+
+            import MyModule from './MyModule'
+            const inst = new MyModule()
+
+      section(data-bespoke-hash="use-es6-today")
+        h2 Start use ES6 Today!
+
+      section.full-imgs
+        img(src="./images/es6-table.png")
+        h5
+          a(href='https://kangax.github.io/compat-table/es6/' target='_blank') ES6 compatibility table
+
+      section.full-imgs(data-bespoke-hash="babel")
+        <a href="https://babeljs.io/" target="_blank"><img src="./images/babel.png"/></a>
+
+      section
+        h2 Babel
+        ul
+          li Babel is a compiler for writing next generation JavaScript.
+          li
+            pre
+              code.language-javascript.
+                // es6
+                'use strict'
+                function echo (myVar = null) {
+                  console.log(myVar)
+                }
+
+      section
+        pre
+          code.language-javascript.
+            // es5 compiled by Babel
+            'use strict';
+            function echo() {
+              var myVar = arguments.length <= 0 ||
+                          arguments[0] === undefined
+                          ? null : arguments[0];
+              console.log(myVar);
+            }
+
+      section
+        h3 Babel usage
+        ul.left-align
+          li
+            pre
+              code
+                $ npm install babel-cli --save-dev
+                $ npm install babel-preset-es2015 --save-dev
+
+          li
+            pre
+              code.language-javascript.
+                // inside .babelrc file
+                { "presets": ["es2015"] }
+
+          li
+            pre
+              code
+                $ babel script.js --out-file script-compiled.js
+          li
+            pre
+              code
+                $ babel script.js --watch --out-file script-compiled.js
+
+      section
+        h2 Last but not least
+
+      section(data-bespoke-hash="code-style")
+        h2.bullet JavaScript code style
+        ul
+          li <a href="http://standardjs.com/" target="_blank">Standard Style</a>
+          li <a href="https://github.com/airbnb/javascript" target="_blank">Airbnb style guide</a>
+          li <a href="https://google.github.io/styleguide/javascriptguide.xml" target="_blank">Google style guide</a>
+          li <a href="https://developer.mozilla.org/en-US/docs/Mozilla/Developer_guide/Coding_Style" target="_blank">MDN Coding style</a>
+
+      section(data-bespoke-hash="further-reads")
+        h3 Further reads
+        p <a href="https://github.com/lukehoban/es6features" target="_blank">github.com/lukehoban/es6features</a>
+        p <a href="https://babeljs.io/docs/learn-es2015/" target="_blank">babeljs.io/docs/learn-es2015/</a>
+        p <a href="https://github.com/ericdouglas/ES6-Learning" target="_blank">github.com/ericdouglas/ES6-Learning</a>
+
+      section
+        img(src="./images/LogoWebIsArt.png" style="width: 130px; height: auto; margin-bottom: 20px;")
+        h1 Thanks!
+        p @delvedor on <a href="https://twitter.com/delvedor" target="_blank">Twitter</a> and <a href="https://github.com/delvedor" target="_blank">GitHub</a>
+        p <a href="http://delved.org/" target="_blank">delved.org</a>
+
+    script(src='build/build.js')
