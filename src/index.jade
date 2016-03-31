@@ -82,6 +82,8 @@ html
           li Spread operator
           li Classes
           li Promises
+          li Iterators
+          li Generators
           li Modules
 
       section
@@ -397,6 +399,125 @@ html
               .catch((err) => {
                 console.log(err)
               })
+
+      section(data-bespoke-hash="iterators")
+        h2 Iterators
+        ul
+          li A familiar concept in many other languages
+          li Iterators are just objects with a specific interface designed for iteration
+          li That interface consists of a single method <strong>.next()</strong> which returns an object with two keys: <strong>value</strong> and <strong>done</strong>
+          li The iterator keeps an internal pointer to a location within a collection of values and with each call to the <strong>.next()</strong> method, it returns the next appropriate value
+
+      section
+        pre
+          code.language-javascript.
+            function makeCounter (from, to) {
+              let obj = {}
+              obj.next = function () {
+                let done = from >= to
+                let value = !done ? ++from : null
+                return {
+                  done: done,
+                  value: value
+                }
+              }
+              return obj
+            }
+
+      section
+        pre
+          code.language-javascript.
+            let counter = makeCounter(0, 10)
+
+            console.log(counter.next())
+            // { done: false, value: 1 }
+            console.log(counter.next())
+            // { done: false, value: 2 }
+            ...
+            ...
+            console.log(counter.next())
+            // { done: false, value: 10 }
+            console.log(counter.next())
+            // { done: true, value: null }
+
+
+      section(data-bespoke-hash="generators")
+        h2 Generators
+        ul
+          li A generator is a function that returns an <strong>iterator</strong>
+          li The <strong>yield</strong> keyword specifies values the resulting iterator should return when next() is called
+          li The most interesting aspect of generator functions is that they <strong>stop execution</strong> after each yield statement
+
+      section
+        pre.small-text
+          code.language-javascript.
+            function * range (from, to) {
+              while (from <= to) {
+                yield from++
+              }
+            }
+
+            let r = range(5, 10)
+            console.log(r.next())
+            // { done: false, value: 5 }
+            ...
+            console.log(r.next())
+            // { done: false, value: 10 }
+            console.log(r.next())
+            // { done: true, value: null }
+
+      section
+        p for-of construct
+        pre
+          code.language-javascript.
+            function * range (from, to) {
+              while (from <= to) {
+                yield from++
+              }
+            }
+            // for-of calls .next() for us
+            for (let i of range(5, 10)) {
+              alert(i)
+            }
+        p <a data-bespoke-run>Run code snippet</a>
+
+      section
+        h3 Look sync, do async
+        ul
+          li Generators allow us to hide the asynchronicity
+          li.big-bullet <strong>Wat?</strong>
+          li Generators can pause their execution while async calls complete
+
+      section
+        h3 How
+        ul
+          li 1) create new <strong>generator-iterator</strong> object (it)
+          li 2) define the <strong>go function</strong>, which calls it.next
+          li 3) pass go to the new generator-iterator object
+          li 4) run go once with no arguments to start the generator
+
+      section
+        img(src="./images/generators.gif" style="max-width: 350px; height: auto;")
+
+      section
+        p Real world example
+        pre.small-text
+          code.language-javascript.
+            const fs = require('fs')
+
+            function run (generator) {
+              let it = generator(go)
+              function go (err, result) {
+                it.next(result)
+              }
+              go()
+            }
+
+            run(function * (done) {
+              let examples = yield fs.readdir('examples', done)
+              console.log(examples)
+            })
+        <a href="https://github.com/isRuslan/learn-generators" target="_blank" class="small-text">Credits</a>
 
       section(data-bespoke-hash="modules")
         h2 Modules
