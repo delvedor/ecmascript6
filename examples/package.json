@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "babelify": "babel --presets es2015 src/ --watch --out-dir lib/"
+    "babelify": "babel --presets es2015 src/ --watch --out-dir lib/",
+    "clean": "rm -rf lib/"
   },
   "keywords": [],
   "private": true,
