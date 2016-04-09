@@ -4,7 +4,7 @@ const Beers = function (text, beers) {
   this.text = text
   this.beers = beers
   this.listBeers = function () {
-    return this.beers.map(beer => `${this.text} ${beer}`)
+    return this.beers.map((beer) => `${this.text} ${beer}`)
   }
 }
 

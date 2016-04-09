@@ -44,7 +44,7 @@ html
               li Functional
               li Works both in browser and server
               li but also on mobile, IoT, Desktop..
-              li and much other!
+              li and much more!
 
       section
         h2.bullet JavaScript brief history
@@ -128,7 +128,7 @@ html
             let myVar = true
 
             function helloVar () {
-              let myVar = false // Notice let keyword here
+              let myVar = false 
               return myVar
             }
 
@@ -272,7 +272,7 @@ html
         h2 Destructuring Assignment
         ul
           li Is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirror the construction of array and object literals.
-          li <img src="./images/what.gif" style="max-width: 350px;"/>
+          li <img src="./images/what.gif" style="max-width: 350px;" alt=""/>
 
       section
         ul
@@ -320,7 +320,7 @@ html
           li
             pre
               code.language-javascript.
-                // swapping a & b, the old way
+                // swapping a &amp; b, the old way
                 let swap = a
                 a = b
                 b = swap
@@ -367,9 +367,12 @@ html
               sum () {
                 return this.x + this.y
               }
+              toString () {
+                return `(${x}, ${y})`
+              }
             }
         ul
-          li Yes, you can also use extends, static...
+          li Yes, you can also use extends, super, static...
 
       section(data-bespoke-hash="promises")
         h2 Promises
@@ -561,7 +564,7 @@ html
           a(href='https://kangax.github.io/compat-table/es6/' target='_blank') ES6 compatibility table
 
       section.full-imgs(data-bespoke-hash="babel")
-        <a href="https://babeljs.io/" target="_blank"><img src="./images/babel.png"/></a>
+        <a href="https://babeljs.io/" target="_blank"><img src="./images/babel.png" alt=""/></a>
 
       section
         h2 Babel

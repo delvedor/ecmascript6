@@ -2,6 +2,12 @@
 
 let array = ['javascript', 'is', 'good']
 
+// without destructuring
+let _one = array[0]
+let _two = array[1]
+let _three = array[2]
+console.log(_one, _two, _three)
+
 // with destructuring
 let [one, two, three] = array
 console.log(one, two, three)
