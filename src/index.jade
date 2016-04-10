@@ -128,7 +128,7 @@ html
             let myVar = true
 
             function helloVar () {
-              let myVar = false 
+              let myVar = false
               return myVar
             }
 
@@ -173,7 +173,7 @@ html
             let myString = `Hi, I'm a template literal!`
 
             let add = `By adding one and two you get ${1 + 2}!`
-            console.log(add) // By adding one and two you get 2!
+            console.log(add) // By adding one and two you get 3!
 
             let multiline = `I'm
             multiline!`
@@ -207,7 +207,7 @@ html
                   return array
                 }
 
-                alert(append(5))
+                alert(append())
                 alert(append(7, append(2)))
             <a data-bespoke-run>Run code snippet</a>
 
@@ -368,7 +368,7 @@ html
                 return this.x + this.y
               }
               toString () {
-                return `(${x}, ${y})`
+                return `(${this.x}, ${this.y})`
               }
             }
         ul
@@ -381,18 +381,19 @@ html
           li
             pre
               code.language-javascript.
-                new Promise((resolve, reject) => {
+                const myPromise = new Promise((resolve, reject) => {
                   if (someError) {
                     reject(someError)
                   } else {
                     resolve(value)
                   }
                 })
+                return myPromise
 
       section
         pre
           code.language-javascript.
-            myPromise(param)
+            somePromise(param)
               .then((value) => {
                 return otherPromise(value)
               })
@@ -628,8 +629,8 @@ html
 
       section(data-bespoke-hash="further-reads")
         h3 Further reads
-        p <a href="https://github.com/lukehoban/es6features" target="_blank">github.com/lukehoban/es6features</a>
         p <a href="https://babeljs.io/docs/learn-es2015/" target="_blank">babeljs.io/docs/learn-es2015/</a>
+        p <a href="https://github.com/lukehoban/es6features" target="_blank">github.com/lukehoban/es6features</a>
         p <a href="https://github.com/ericdouglas/ES6-Learning" target="_blank">github.com/ericdouglas/ES6-Learning</a>
 
       section
