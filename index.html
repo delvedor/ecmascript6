@@ -8,7 +8,7 @@
   </head>
   <body>
     <article>
-      <section><img src="./images/LogoWebIsArt.png" style="width: 130px; height: auto; margin-bottom: 20px;">
+      <section><img src="./images/LogoWebIsArt.png" style="width: 180px; height: auto; margin-bottom: 20px;">
         <h1>ECMAScript 6</h1>
         <h3>aka JavaScript ES6/ES2015</h3>
         <h4>by <a href="https://twitter.com/delvedor" target="_blank">Tomas Della Vedova</a></h4>
@@ -31,29 +31,29 @@
         <h2 class="bullet">Ok, so what is JavaScript?</h2>
         <ul>
           <li>Is the world's most misunderstood programming language.</li>
-          <li>
-            Javascript is:
-            <br/>
-            <br/>
-            <ul>
-              <li>Asynchronous</li>
-              <li>Mono thread</li>
-              <li>Dynamic</li>
-              <li>Interpreted</li>
-              <li>Object Oriented</li>
-              <li>Functional</li>
-              <li>Works both in browser and server</li>
-              <li>but also on mobile, IoT, Desktop..</li>
-              <li>and much other!</li>
-            </ul>
-          </li>
+          <li>Asynchronous</li>
+          <li>Mono thread</li>
+          <li>Dynamic</li>
+          <li>Interpreted</li>
+          <li>Object Oriented</li>
+          <li>Functional</li>
+          <li>Works both in browser and server</li>
+          <li>but also on mobile, IoT, Desktop..</li>
+          <li>and much more!</li>
         </ul>
       </section>
       <section>
         <h2 class="bullet">JavaScript brief history</h2>
         <ul>
-          <li>JavaScript was developed in 10 days in 1995 by <a href="https://twitter.com/brendaneich" target="_blank">Brendan Eich</a></li>
-          <li>Names: Mocha -> LiveScript -> JavaScript</li>
+          <li>JavaScript was developed in 10 days in 1995 by <a href="https://twitter.com/brendaneich" target="_blank">Brendan Eich</a> while he was working for Netscape</li>
+        </ul>
+        <ul>
+          <li>Names:</li>
+          <li>Mocha <em>(05/95)</em></li>
+          <li>LiveScript <em>(09/95)</em></li>
+          <li>JavaScript <em>(12/95)</em></li>
+        </ul>
+        <ul>
           <li>In 1996 was standardized by Ecma</li>
         </ul>
       </section>
@@ -81,10 +81,12 @@
           <li>Arrow functions</li>
           <li>Default parameters</li>
           <li>Rest parameters</li>
-          <li>Destructuring assignment</li>
           <li>Spread operator</li>
+          <li>Destructuring assignment</li>
           <li>Classes</li>
           <li>Promises</li>
+          <li>Iterators</li>
+          <li>Generators</li>
           <li>Modules</li>
         </ul>
       </section>
@@ -95,14 +97,20 @@
       <section data-bespoke-hash="let">
         <h2>let</h2>
         <p>The let statement declares a block-scoped local variable without hoisting, optionally initializing it to a value.</p>
-        <pre><code class="language-javascript">console.log(myVar) // ReferenceError: myVar is not defined
-let myVar = 'hello'
-</code></pre>
-        <pre><code class="language-javascript">if (true) {
+        <ul>
+          <li>
+            <pre><code class="language-javascript">console.log(myVar)  // ReferenceError:
+let myVar = 'hello' // myVar is not defined</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-javascript">if (true) {
   let myVar = 'world'
 }
-console.log(myVar) // ReferenceError: myVar is not defined
-</code></pre>
+console.log(myVar) // ReferenceError:
+                   // myVar is not defined
+                   </code></pre>
+          </li>
+        </ul>
       </section>
       <section>
         <p>What gonna happen?</p>
@@ -122,7 +130,7 @@ alert('After function execution: ' + myVar)</code></pre><a data-bespoke-run>Run 
         <pre><code class="language-javascript">let myVar = true
 
 function helloVar () {
-  let myVar = false // Notice let keyword here
+  let myVar = false
   return myVar
 }
 
@@ -161,10 +169,10 @@ const x = Object.freeze({ bool: true })
       <section data-bespoke-hash="template-literals">
         <h2>Template literals</h2>
         <p>String literals allowing embedded expressions.<br/>You can use multi-line strings and string interpolation features with them.</p>
-        <pre><code class="language-javascript">let myString = `Hi, I'm a template literals!`
+        <pre><code class="language-javascript">let myString = `Hi, I'm a template literal!`
 
 let add = `By adding one and two you get ${1 + 2}!`
-console.log(add) // By adding one and two you get 2!
+console.log(add) // By adding one and two you get 3!
 
 let multiline = `I'm
 multiline!`
@@ -178,7 +186,7 @@ multiline!`
             <pre><code class="language-javascript">const myFunction = () => console.log('Hello world!')</code></pre>
           </li>
           <li>
-            <pre><code class="language-javascript">event.on('pippo', (err, val) => {
+            <pre><code class="language-javascript">event.on('data', (err, val) => {
   if (err) return console.log(err)
   doSomething(val)
 })
@@ -197,7 +205,7 @@ multiline!`
   return array
 }
 
-alert(append(5))
+alert(append())
 alert(append(7, append(2)))</code></pre><a data-bespoke-run>Run code snippet</a>
           </li>
         </ul>
@@ -222,7 +230,7 @@ myFunction('c', 'i', 'a', 'o')
         <p class="bullet">Allows an expression to be expanded in places where multiple arguments/elements are expected.</p>
         <ul>
           <li>
-            <pre><code class="language-javascript">function myFunction (x, y, z) {}
+            <pre><code class="language-javascript">function myFunction (x, y, z) { ... }
 let args = [1, 2, 3]</code></pre>
           </li>
           <li>
@@ -239,7 +247,7 @@ myFunction(...args)
       <section>
         <ul>
           <li>
-            <pre><code class="language-javascript">// es5
+            <pre class="small-text"><code class="language-javascript">// es5
 // concat
 let params = ['something', 45, false]
 let other = [true, 'js'].concat(params)
@@ -248,7 +256,7 @@ let str = 'foo'
 let chars = str.split('') // ['f', 'o', 'o']</code></pre>
           </li>
           <li>
-            <pre><code class="language-javascript">// es6
+            <pre class="small-text"><code class="language-javascript">// es6
 // concat
 let params = ['something', 45, false]
 let other = [true, 'js', ...params]
@@ -263,7 +271,7 @@ let chars = [...str] // ['f', 'o', 'o']
         <h2>Destructuring Assignment</h2>
         <ul>
           <li>Is a JavaScript expression that makes it possible to extract data from arrays or objects using a syntax that mirror the construction of array and object literals.</li>
-          <li><img src="./images/what.gif" style="max-width: 350px;"/></li>
+          <li><img src="./images/what.gif" style="max-width: 350px;" alt=""/></li>
         </ul>
       </section>
       <section>
@@ -308,7 +316,7 @@ let { name: n, answer: a } = obj
         <ul>
           <li>Were you saying swapping?</li>
           <li>
-            <pre><code class="language-javascript">// swapping a & b, the old way
+            <pre><code class="language-javascript">// swapping a &amp; b, the old way
 let swap = a
 a = b
 b = swap</code></pre>
@@ -357,9 +365,28 @@ function func3 ({ name: n, val: v }) {
   sum () {
     return this.x + this.y
   }
+  toString () {
+    return `(${this.x}, ${this.y})`
+  }
 }</code></pre>
         <ul>
-          <li>Yes, you can also use extends, static...</li>
+          <li>Yes, you can also use extends, super, static...</li>
+        </ul>
+      </section>
+      <section>
+        <ul>
+          <li>
+            <pre><code class="language-javascript">// Class declaration
+class MyClass { ... }
+
+// Creation of new instances
+const instance1 = new MyClass(4, 2)
+const instance2 = new MyClass(4, 2)</code></pre>
+          </li>
+          <li>
+            <pre><code class="language-javascript">console.log(instance1 === instance2) // false
+</code></pre>
+          </li>
         </ul>
       </section>
       <section data-bespoke-hash="promises">
@@ -367,19 +394,20 @@ function func3 ({ name: n, val: v }) {
         <ul>
           <li>The Promise object is used for deferred and async computations.<br/>A Promise represents an operation that hasn't completed yet, but is expected in the future.</li>
           <li>
-            <pre><code class="language-javascript">new Promise((resolve, reject) => {
-  if (someError) {
-    reject(someError)
-  } else {
-    resolve(value)
-  }
-})
+            <pre><code class="language-javascript">function somePromise (param) {
+  const myPromise = new Promise((resolve, reject) => {
+    asyncOperation(param, (err, result) => {
+      err ? reject(err) : resolve(result)
+    })
+  })
+  return myPromise
+}
 </code></pre>
           </li>
         </ul>
       </section>
       <section>
-        <pre><code class="language-javascript">myPromise(param)
+        <pre><code class="language-javascript">somePromise(param)
   .then((value) => {
     return otherPromise(value)
   })
@@ -390,6 +418,120 @@ function func3 ({ name: n, val: v }) {
     console.log(err)
   })
   </code></pre>
+      </section>
+      <section data-bespoke-hash="iterators">
+        <h2>Iterators</h2>
+        <ul>
+          <li>A familiar concept in many other languages</li>
+          <li>Iterators are just objects with a specific interface designed for iteration</li>
+          <li>That interface consists of a single method <strong>.next()</strong> which returns an object with two keys: <strong>value</strong> and <strong>done</strong></li>
+          <li>The iterator keeps an internal pointer to a location within a collection of values and with each call to the <strong>.next()</strong> method, it returns the next appropriate value</li>
+        </ul>
+      </section>
+      <section>
+        <pre><code class="language-javascript">function makeCounter (from, to) {
+  let obj = {}
+  obj.next = function () {
+    let done = from >= to
+    let value = !done ? ++from : null
+    return {
+      done: done,
+      value: value
+    }
+  }
+  return obj
+}
+</code></pre>
+      </section>
+      <section>
+        <pre><code class="language-javascript">let counter = makeCounter(0, 10)
+
+console.log(counter.next())
+// { done: false, value: 1 }
+console.log(counter.next())
+// { done: false, value: 2 }
+...
+...
+console.log(counter.next())
+// { done: false, value: 10 }
+console.log(counter.next())
+// { done: true, value: null }
+
+</code></pre>
+      </section>
+      <section data-bespoke-hash="generators">
+        <h2>Generators</h2>
+        <ul>
+          <li>A generator is a function that returns an <strong>iterator</strong></li>
+          <li>The <strong>yield</strong> keyword specifies values the resulting iterator should return when next() is called</li>
+          <li>The most interesting aspect of generator functions is that they <strong>stop execution</strong> after each yield statement</li>
+        </ul>
+      </section>
+      <section>
+        <pre class="small-text"><code class="language-javascript">function * range (from, to) {
+  while (from <= to) {
+    yield from++
+  }
+}
+
+let r = range(5, 10)
+console.log(r.next())
+// { done: false, value: 5 }
+...
+console.log(r.next())
+// { done: false, value: 10 }
+console.log(r.next())
+// { done: true, value: null }
+</code></pre>
+      </section>
+      <section>
+        <p>for-of construct</p>
+        <pre><code class="language-javascript">function * range (from, to) {
+  while (from <= to) {
+    yield from++
+  }
+}
+// for-of calls .next() for us
+for (let i of range(5, 10)) {
+  alert(i)
+}</code></pre>
+        <p><a data-bespoke-run>Run code snippet</a></p>
+      </section>
+      <section>
+        <h3>Look sync, do async</h3>
+        <ul>
+          <li>Generators allow us to hide the asynchronicity</li>
+          <li class="big-bullet"><strong>Wat?</strong></li>
+          <li>Generators can pause their execution while async calls complete</li>
+        </ul>
+      </section>
+      <section>
+        <h3>How</h3>
+        <ul>
+          <li>1) create new <strong>generator-iterator</strong> object (it)</li>
+          <li>2) define the <strong>go function</strong>, which calls it.next</li>
+          <li>3) pass go to the new generator-iterator object</li>
+          <li>4) run go once with no arguments to start the generator</li>
+        </ul>
+      </section>
+      <section><img src="./images/generators.gif" style="max-width: 350px; height: auto;"></section>
+      <section>
+        <p>Real world example</p>
+        <pre class="small-text"><code class="language-javascript">const fs = require('fs')
+
+function run (generator) {
+  let it = generator(go)
+  function go (err, result) {
+    if (err) console.log(err)
+    it.next(result)
+  }
+  go()
+}
+
+run(function * (done) {
+  let examples = yield fs.readdir('examples', done)
+  console.log(examples)
+})</code></pre><a href="https://github.com/isRuslan/learn-generators" target="_blank" class="small-text">Credits</a>
       </section>
       <section data-bespoke-hash="modules">
         <h2>Modules</h2>
@@ -403,10 +545,10 @@ function func3 ({ name: n, val: v }) {
         <h2>Export</h2>
         <pre><code class="language-javascript">// lib.js
 export const helloWorld = 'Hello world!'
-export function myFunction () {}
+export function myFunction () { ... }
 
 // MyModule.js
-export default class {...}
+export default class { ... }
 </code></pre>
       </section>
       <section>
@@ -429,7 +571,7 @@ const inst = new MyModule()
       <section class="full-imgs"><img src="./images/es6-table.png">
         <h5><a href="https://kangax.github.io/compat-table/es6/" target="_blank">ES6 compatibility table</a></h5>
       </section>
-      <section data-bespoke-hash="babel" class="full-imgs"><a href="https://babeljs.io/" target="_blank"><img src="./images/babel.png"/></a></section>
+      <section data-bespoke-hash="babel" class="full-imgs"><a href="https://babeljs.io/" target="_blank"><img src="./images/babel.png" alt=""/></a></section>
       <section>
         <h2>Babel</h2>
         <ul>
@@ -489,14 +631,14 @@ $ npm install babel-preset-es2015 --save-dev</code></pre>
       </section>
       <section data-bespoke-hash="further-reads">
         <h3>Further reads</h3>
-        <p><a href="https://github.com/lukehoban/es6features" target="_blank">github.com/lukehoban/es6features</a></p>
         <p><a href="https://babeljs.io/docs/learn-es2015/" target="_blank">babeljs.io/docs/learn-es2015/</a></p>
+        <p><a href="https://github.com/lukehoban/es6features" target="_blank">github.com/lukehoban/es6features</a></p>
         <p><a href="https://github.com/ericdouglas/ES6-Learning" target="_blank">github.com/ericdouglas/ES6-Learning</a></p>
       </section>
-      <section><img src="./images/LogoWebIsArt.png" style="width: 130px; height: auto; margin-bottom: 20px;">
+      <section><img src="./images/LogoWebIsArt.png" style="width: 180px; height: auto; margin-bottom: 20px;">
         <h1>Thanks!</h1>
         <p>@delvedor on <a href="https://twitter.com/delvedor" target="_blank">Twitter</a> and <a href="https://github.com/delvedor" target="_blank">GitHub</a></p>
-        <p><a href="http://delved.org/" target="_blank">delved.org</a></p>
+        <p><a href="https://www.facebook.com/webisart.user.group/" target="_blank">facebook.com/webisart.user.group</a></p>
       </section>
     </article>
     <script src="build/build.js"></script>
