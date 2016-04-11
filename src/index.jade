@@ -11,7 +11,7 @@ html
     article
 
       section
-        img(src="./images/LogoWebIsArt.png" style="width: 130px; height: auto; margin-bottom: 20px;")
+        img(src="./images/LogoWebIsArt.png" style="width: 180px; height: auto; margin-bottom: 20px;")
         h1 ECMAScript 6
         h3 aka JavaScript ES6/ES2015
         h4 by <a href="https://twitter.com/delvedor" target="_blank">Tomas Della Vedova</a>
@@ -32,25 +32,26 @@ html
         h2.bullet Ok, so what is JavaScript?
         ul
           li Is the world's most misunderstood programming language.
-          li Javascript is:
-            <br/>
-            <br/>
-            ul
-              li Asynchronous
-              li Mono thread
-              li Dynamic
-              li Interpreted
-              li Object Oriented
-              li Functional
-              li Works both in browser and server
-              li but also on mobile, IoT, Desktop..
-              li and much more!
+          li Asynchronous
+          li Mono thread
+          li Dynamic
+          li Interpreted
+          li Object Oriented
+          li Functional
+          li Works both in browser and server
+          li but also on mobile, IoT, Desktop..
+          li and much more!
 
       section
         h2.bullet JavaScript brief history
         ul
-          li JavaScript was developed in 10 days in 1995 by <a href="https://twitter.com/brendaneich" target="_blank">Brendan Eich</a>
-          li Names: Mocha -> LiveScript -> JavaScript
+          li JavaScript was developed in 10 days in 1995 by <a href="https://twitter.com/brendaneich" target="_blank">Brendan Eich</a> while he was working for Netscape
+        ul
+          li Names:
+          li Mocha <em>(05/95)</em>
+          li LiveScript <em>(09/95)</em>
+          li JavaScript <em>(12/95)</em>
+        ul
           li In 1996 was standardized by Ecma
 
       section
@@ -78,8 +79,8 @@ html
           li Arrow functions
           li Default parameters
           li Rest parameters
-          li Destructuring assignment
           li Spread operator
+          li Destructuring assignment
           li Classes
           li Promises
           li Iterators
@@ -93,17 +94,20 @@ html
       section(data-bespoke-hash="let")
         h2 let
         p The let statement declares a block-scoped local variable without hoisting, optionally initializing it to a value.
-        pre
-          code.language-javascript.
-            console.log(myVar) // ReferenceError: myVar is not defined
-            let myVar = 'hello'
-
-        pre
-          code.language-javascript.
-            if (true) {
-              let myVar = 'world'
-            }
-            console.log(myVar) // ReferenceError: myVar is not defined
+        ul
+          li
+            pre
+              code.language-javascript.
+                console.log(myVar)  // ReferenceError:
+                let myVar = 'hello' // myVar is not defined
+          li
+            pre
+              code.language-javascript.
+                if (true) {
+                  let myVar = 'world'
+                }
+                console.log(myVar) // ReferenceError:
+                                   // myVar is not defined
 
       section
         p What gonna happen?
@@ -189,7 +193,7 @@ html
           li
             pre
               code.language-javascript.
-                event.on('pippo', (err, val) => {
+                event.on('data', (err, val) => {
                   if (err) return console.log(err)
                   doSomething(val)
                 })
@@ -232,7 +236,7 @@ html
           li
             pre
               code.language-javascript.
-                function myFunction (x, y, z) {}
+                function myFunction (x, y, z) { ... }
                 let args = [1, 2, 3]
           li
             pre
@@ -248,7 +252,7 @@ html
       section
         ul
           li
-            pre
+            pre.small-text
               code.language-javascript.
                 // es5
                 // concat
@@ -258,7 +262,7 @@ html
                 let str = 'foo'
                 let chars = str.split('') // ['f', 'o', 'o']
           li
-            pre
+            pre.small-text
               code.language-javascript.
                 // es6
                 // concat
@@ -374,6 +378,22 @@ html
         ul
           li Yes, you can also use extends, super, static...
 
+      section
+        ul
+          li
+            pre
+              code.language-javascript.
+                // Class declaration
+                class MyClass { ... }
+
+                // Creation of new instances
+                const instance1 = new MyClass(4, 2)
+                const instance2 = new MyClass(4, 2)
+          li
+            pre
+              code.language-javascript.
+                console.log(instance1 === instance2) // false
+
       section(data-bespoke-hash="promises")
         h2 Promises
         ul
@@ -381,14 +401,14 @@ html
           li
             pre
               code.language-javascript.
-                const myPromise = new Promise((resolve, reject) => {
-                  if (someError) {
-                    reject(someError)
-                  } else {
-                    resolve(value)
-                  }
-                })
-                return myPromise
+                function somePromise (param) {
+                  const myPromise = new Promise((resolve, reject) => {
+                    asyncOperation(param, (err, result) => {
+                      err ? reject(err) : resolve(result)
+                    })
+                  })
+                  return myPromise
+                }
 
       section
         pre
@@ -512,6 +532,7 @@ html
             function run (generator) {
               let it = generator(go)
               function go (err, result) {
+                if (err) console.log(err)
                 it.next(result)
               }
               go()
@@ -536,10 +557,10 @@ html
           code.language-javascript.
             // lib.js
             export const helloWorld = 'Hello world!'
-            export function myFunction () {}
+            export function myFunction () { ... }
 
             // MyModule.js
-            export default class {...}
+            export default class { ... }
 
       section
         h2 Import
@@ -634,9 +655,9 @@ html
         p <a href="https://github.com/ericdouglas/ES6-Learning" target="_blank">github.com/ericdouglas/ES6-Learning</a>
 
       section
-        img(src="./images/LogoWebIsArt.png" style="width: 130px; height: auto; margin-bottom: 20px;")
+        img(src="./images/LogoWebIsArt.png" style="width: 180px; height: auto; margin-bottom: 20px;")
         h1 Thanks!
         p @delvedor on <a href="https://twitter.com/delvedor" target="_blank">Twitter</a> and <a href="https://github.com/delvedor" target="_blank">GitHub</a>
-        p <a href="http://delved.org/" target="_blank">delved.org</a>
+        p <a href="https://www.facebook.com/webisart.user.group/" target="_blank">facebook.com/webisart.user.group</a>
 
     script(src='build/build.js')

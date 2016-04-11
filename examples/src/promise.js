@@ -4,11 +4,7 @@ function makeAPromise () {
   const myPromise = new Promise((resolve, reject) => {
     let ran = Math.random()
     setTimeout(() => {
-      if (ran > 0.5) {
-        resolve(true)
-      } else {
-        reject({ error: 'Error', promise: 'first' })
-      }
+      ran > 0.5 ? resolve(true) : reject({ error: 'Error', promise: 'first' })
     }, 1000)
   })
   return myPromise
@@ -18,11 +14,7 @@ function makeAnotherPromise () {
   const myPromise = new Promise((resolve, reject) => {
     let ran = Math.random()
     setTimeout(() => {
-      if (ran < 0.5) {
-        resolve(false)
-      } else {
-        reject({ error: 'Error', promise: 'second' })
-      }
+      ran < 0.5 ? resolve(false) : reject({ error: 'Error', promise: 'second' })
     }, 1000)
   })
   return myPromise
