@@ -2,15 +2,14 @@
   "name": "examples",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
-    "babelify": "babel --presets es2015 src/ --watch --out-dir lib/",
+    "babelify": "babel --presets es2015 src/ --out-dir lib/",
     "clean": "rm -rf lib/"
   },
   "keywords": [],
   "private": true,
   "author": "Tomas Della Vedova - @delvedor (http://delved.org)",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "moment": "^2.12.0"
   },
